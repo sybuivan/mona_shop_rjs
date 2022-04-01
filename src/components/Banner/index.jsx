@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./style.scss";
 import { Pagination, Navigation, Autoplay } from "swiper";
@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Images from "../../constants/images";
+import { Link } from "react-router-dom";
 
 function Banner(props) {
   return (
@@ -31,6 +32,20 @@ function Banner(props) {
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
+
+        <div className="banner-content">
+          <Row>
+            {Images.HOME_THREE.map((item, index) => (
+              <Col lg={6} key={index}>
+                <Link to="to">
+                  <div className="banner-content__image">
+                    <img src={item} alt="" />
+                  </div>
+                </Link>
+              </Col>
+            ))}
+          </Row>
         </div>
       </Container>
     </section>

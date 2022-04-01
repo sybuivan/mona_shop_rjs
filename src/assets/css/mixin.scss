@@ -3,3 +3,18 @@
   align-items: $align_item;
   justify-content: $justify_content;
 }
+
+@mixin block-ellipsis($height, $font-size, $line) {
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: $height;
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: 1;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

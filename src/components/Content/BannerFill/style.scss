@@ -1,0 +1,84 @@
+@import "../../../assets/css/mixin.scss";
+.banner-fill {
+  margin:40px 0;
+
+  &-wrapper {
+  }
+  &--general:hover &__image-zoom {
+    transform: scale(1.1);
+  }
+
+  &__left,
+  &__right {
+    height: 360px;
+  }
+
+  &__left &__image-zoom {
+    background-image: url("http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/banner_left_6.jpg");
+  }
+  &__right &__image-zoom {
+    background-image: url("http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/banner-about001.jpg");
+  }
+
+  &__image {
+    overflow: hidden;
+  }
+
+  &--general &__image-zoom {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: transform 0.6s;
+  }
+
+  &__image {
+    height: 100%;
+    position: relative;
+
+    &-zoom {
+    }
+  }
+
+  &__content {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 300px;
+  }
+
+  &__title {
+    color: var(--color-orange);
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: end;
+  }
+  &__desc {
+    color: var(--color-orange);
+    font-size: 1.5em;
+    line-height: 1.4em;
+    text-align: end;
+    margin-bottom: 12px;
+  }
+
+  &__box-button {
+    @include flex-item-center(center, end);
+  }
+
+  &__button {
+    outline: none;
+    color: var(--color-orange-bold);
+    border: 2px solid var(--color-orange-bold);
+    padding: 10px 20px;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.6s ease;
+
+    &:hover {
+      background-color: var(--color-orange-bold);
+      color: var(--color-white);
+    }
+  }
+}

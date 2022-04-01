@@ -1,0 +1,30 @@
+.list-product-tilte-text {
+  position: relative;
+  text-align: center;
+  font-size: 2em;
+  color: var(--color-text-gray66);
+  padding-bottom: 20px;
+
+  &::after {
+    width: 200px;
+    height: 6px;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+      to right,
+      #fe908b 0%,
+      #fe908b 33.4%,
+      #85d6df 33.41%,
+      #85d6df 66.7%,
+      #ffd27a 66.71%,
+      #ffd27a 100%
+    );
+  }
+}
+.list-product-title-content {
+  padding: 40px 0;
+}

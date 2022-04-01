@@ -1,0 +1,95 @@
+@import "../../assets/css/mixin.scss";
+
+.footer {
+  background-color: #232322;
+  padding: 40px 0;
+  &-left {
+  }
+  &-text {
+    color: var(--color-white);
+    padding-bottom: 12px;
+    font-size: 1.4em;
+  }
+  &-left__list {
+    padding-left: 20px;
+    & > li > a {
+      text-decoration: none;
+      color: #a4a4a4;
+      padding: 5px 0;
+      display: block;
+      position: relative;
+
+      &.active {
+        color: var(--color-orange-bold);
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        background-color: var(--color-orange-bold);
+        left: -14px;
+        top: 10px;
+      }
+    }
+  }
+  &-center {
+    padding: 0 12px;
+    border-right: 1px dashed #a4a4a4;
+    border-left: 1px dashed #a4a4a4;
+  }
+  &-center__logo {
+    @include flex-item-center(center, center);
+    & > img {
+      width: 250px;
+    }
+  }
+  &-center__desc {
+    color: #a4a4a4;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.2em;
+  }
+  &-center__box-send {
+    @include flex-item-center(center, center);
+
+    & > input {
+      max-width: 400px;
+      width: 300px;
+      outline: none;
+      padding: 10px 4px;
+      border-radius: 3px;
+    }
+
+    & > button {
+      background-color: var(--color-orange-bold);
+      color: var(--color-white);
+      margin-left: 12px;
+      outline: none;
+      padding: 8px 12px;
+      border: none;
+    }
+  }
+  &-center__button {
+  }
+  &-right {
+  }
+  &-right__address {
+    & > ul > li {
+      color: #a4a4a4;
+      padding: 8px 0;
+
+      & > span {
+        color: var(--color-orange-bold);
+        margin-right: 8px;
+      }
+
+      & > p {
+        display: inline;
+      }
+    }
+  }
+}
