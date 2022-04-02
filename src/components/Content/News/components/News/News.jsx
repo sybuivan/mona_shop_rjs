@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import './style.scss'
+import "./style.scss";
 
 function News(props) {
   return (
@@ -17,7 +17,9 @@ function News(props) {
             Duis luctus elit nisi, et cursus magna pellentesque non.
           </h2>
           <p className="news-box__desc">
-             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quis consequuntur placeat quae magni nobis autem saepe rerum veritatis illum.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+            quis consequuntur placeat quae magni nobis autem saepe rerum
+            veritatis illum.
           </p>
         </div>
       </div>

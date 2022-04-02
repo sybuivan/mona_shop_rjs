@@ -7,12 +7,15 @@ import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUser,
+  AiOutlineDelete,
 } from "react-icons/ai";
-import './style.scss'
+import "./style.scss";
+import classNames from "classnames";
 
-function Header(props) {
+function Header({ showHeader }) {
+  const classHeader = classNames("header", { "header-fiexd": showHeader });
   return (
-    <header className="header">
+    <header className={classHeader}>
       <div className="header-wrapper">
         <Container className="container-fixed">
           <Row>
@@ -59,12 +62,12 @@ function Header(props) {
                   </li>
                   <li className="header-nav__item">
                     <Link to="/" className="header-nav__link">
-                     Phụ kiện
+                      Phụ kiện
                     </Link>
                   </li>
                   <li className="header-nav__item">
                     <Link to="/" className="header-nav__link">
-                     Tin tức
+                      Tin tức
                     </Link>
                   </li>
                 </ul>
@@ -82,9 +85,52 @@ function Header(props) {
                   </li>
 
                   <li className="header-search__item">
-                    <Link to="/">
+                    <div className="header-search__cart-wrapper">
                       <AiOutlineShoppingCart />
-                    </Link>
+
+                      <span className="header-search__cart-icon">1</span>
+
+                      <div className="header-search__cart-down">
+                        <div className="header-search__cart-down-wrapper">
+                          <ul className="header-search__cart-list">
+                            <li className="header-search__cart-item">
+                              <div className="header-search__cart-info">
+                                <div className="header-search__cart-info-image">
+                                  <img
+                                    src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/1-300x300.jpg"
+                                    alt=""
+                                  />
+                                </div>
+
+                                <div className="header-search__cart-info-box">
+                                  <span>Chó american Eskimo</span>
+
+                                  <p>1 x 15,000,000 đ</p>
+                                </div>
+
+                                <div className="header-search__cart-detele">
+                                  <AiOutlineDelete />
+                                </div>
+                              </div>
+
+                              <p className="header-search__cart-total">
+                                <span>Tổng cộng:</span>
+                                <span>15,762,000 ₫</span>
+                              </p>
+
+                              <div className="header-search__button-box">
+                                <button className="header-search__button-cart header-search__button-cart--view">
+                                  Xem giỏ hàng
+                                </button>
+                                <button className="header-search__button-cart header-search__button-cart--checkout">
+                                  Thanh toán
+                                </button>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>

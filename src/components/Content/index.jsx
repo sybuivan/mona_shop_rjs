@@ -9,11 +9,12 @@ import '../../assets/css/titleHome.scss'
 function Content(props) {
   return (
     <section className="section-content">
-       <ListProduct title="CHÓ CẢNH"/>
+    
+       <ListProduct title="CHÓ CẢNH" length={8}/>
 
        <Information />
 
-       <ListProduct title="MÈO CẢNH" />
+       <ListProduct title="MÈO CẢNH" length={8}/>
 
        <BannerFill />
 

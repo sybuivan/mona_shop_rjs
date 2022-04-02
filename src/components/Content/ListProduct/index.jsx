@@ -1,8 +1,9 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Product from "../Product";
+import Fade from "react-reveal/Fade";
 
-function ListProduct({title, length =8}) {
+function ListProduct({ title, length }) {
   return (
     <div>
       <Container className="container-fixed">
@@ -11,8 +12,16 @@ function ListProduct({title, length =8}) {
         </div>
         <Row>
           {Array.from(new Array(length)).map((item, index) => (
-            <Col lg={3}>
-              <Product />
+            <Col lg={3} key={index + 1}>
+              {index % 2 === 0 ? (
+                <Fade top>
+                  <Product />
+                </Fade>
+              ) : (
+                <Fade bottom>
+                  <Product />
+                </Fade>
+              )}
             </Col>
           ))}
         </Row>

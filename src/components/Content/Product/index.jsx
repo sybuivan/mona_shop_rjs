@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Images from "../../../constants/images";
 import "./style.scss";
 
-function Product(props) {
+
+function Product({ position }) {
   return (
     <div className="product">
       <div className="product-wrapper">
