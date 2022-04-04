@@ -1,30 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import ListProduct from './ListProduct'
-import Information from './Information'
-import BannerFill from './BannerFill'
-import NewsComponent from './News/index'
-import '../../assets/css/titleHome.scss'
+import React from "react";
+import PropTypes from "prop-types";
+import ListProduct from "./ListProduct";
+import Information from "./Information";
+import BannerFill from "./BannerFill";
+import NewsComponent from "./News/index";
+import "../../assets/css/titleHome.scss";
+import Banner from "../Banner";
 
 function Content(props) {
   return (
     <section className="section-content">
-    
-       <ListProduct title="CHÓ CẢNH" length={8}/>
+      <Banner />
 
-       <Information />
+      <ListProduct title="CHÓ CẢNH" length={8} />
 
-       <ListProduct title="MÈO CẢNH" length={8}/>
+      <Information />
 
-       <BannerFill />
+      <ListProduct title="MÈO CẢNH" length={8} />
 
-       <ListProduct title="PHỤ KIỆN" length={4} />
+      <BannerFill />
 
-       <NewsComponent />
+      <ListProduct title="PHỤ KIỆN" length={4} />
+
+      <NewsComponent />
     </section>
-  )
+  );
 }
 
-Content.propTypes = {}
+Content.propTypes = {};
 
-export default Content
+export default Content;

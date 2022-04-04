@@ -17,7 +17,7 @@ function Header({ showHeader }) {
   return (
     <header className={classHeader}>
       <div className="header-wrapper">
-        <Container className="container-fixed">
+        <Container className="container-fixed header-wrapper__style">
           <Row>
             <Col lg={2}>
               <div className="header-logo">
@@ -81,7 +81,9 @@ function Header({ showHeader }) {
                     <AiOutlineSearch />
                   </li>
                   <li className="header-search__item">
-                    <AiOutlineUser />
+                    <Link to="login">
+                      <AiOutlineUser />
+                    </Link>
                   </li>
 
                   <li className="header-search__item">

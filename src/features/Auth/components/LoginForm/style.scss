@@ -1,0 +1,57 @@
+@import "../../../../assets/css/mixin.scss";
+
+.login-form {
+  width: 400px;
+  background-color: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 22px 20px;
+  margin: 40px auto;
+  border-radius: 8px;
+  &__top {
+  }
+
+  &__logo {
+    @include flex-item-center(center, center);
+    padding: 12px 0;
+    & > img {
+      width: 70px;
+    }
+  }
+
+  &__input {
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    padding: 20px 0;
+    & p {
+      text-align: center;
+
+      & strong {
+        font-weight: bold;
+      }
+    }
+    &-name {
+      font-size: 1.7em;
+      padding-bottom: 8px;
+    }
+
+    &-sign {
+      color: var(--color-text-gray66);
+      font-size: 1.2em;
+    }
+  }
+
+  &__forgot {
+    @include flex-item-center(center, end);
+    padding: 20px 0;
+  }
+
+  &__submit {
+    @include flex-item-center(center, space-between);
+    padding: 20px 0;
+    &-btn {
+      text-transform: uppercase;
+    }
+  }
+}
