@@ -1,14 +1,14 @@
-import axiosClient from "axiosClient";
+import axiosClient from "./axiosClient";
 
-const userApi = {
+const usersApi = {
   register(data) {
-    const url = "/auth/local/register";
+    const url = "/register";
     return axiosClient.post(url, data);
   },
   login(data) {
-    const url = "/auth/local";
+    const url = "/login";
     return axiosClient.post(url, data);
   },
 };
 
-export default userApi
+export default usersApi

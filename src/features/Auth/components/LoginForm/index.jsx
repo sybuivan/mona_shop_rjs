@@ -60,6 +60,7 @@ function LoginForm({ onSubmit = null }) {
           <InputFiled
             name="email"
             control={control}
+            // value={JSON.parse(localStorage.getItem('user')).email || ""}
             label="Email"
             errors={errors}
             className="login-form__input"

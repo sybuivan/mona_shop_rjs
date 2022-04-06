@@ -7,17 +7,27 @@ import LoginFeature from "./features/Auth/components/Login";
 import RegisterFeature from "./features/Auth/components/Register";
 import reportWebVitals from "./reportWebVitals";
 import Content from "./components/Content";
+import { Provider } from "react-redux";
+import { SnackbarProvider } from "notistack";
+import store from "./app/store";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/" element={<Content />} />
-          <Route path="login" element={<LoginFeature />} />
-          <Route path="register" element={<RegisterFeature />} />
-        </Route>
-      </Routes>
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Provider store={store}>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="/" element={<Content />} />
+              <Route path="login" element={<LoginFeature />} />
+              <Route path="register" element={<RegisterFeature />} />
+            </Route>
+          </Routes>
+        </Provider>
+      </SnackbarProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

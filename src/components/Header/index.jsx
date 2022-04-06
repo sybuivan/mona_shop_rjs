@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -11,9 +11,43 @@ import {
 } from "react-icons/ai";
 import "./style.scss";
 import classNames from "classnames";
+import {
+  Avatar,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/Auth/userSlice";
 
 function Header({ showHeader }) {
+  const loggedInUser = useSelector((state) => state.user.current);
+  const isLogged = !!loggedInUser.idUser;
+  console.log("loggerId", loggedInUser);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const classHeader = classNames("header", { "header-fiexd": showHeader });
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClickMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+    // navigate("/login");
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
+    // navigate("/");
+    console.log('da click');
+  };
   return (
     <header className={classHeader}>
       <div className="header-wrapper">
@@ -80,11 +114,19 @@ function Header({ showHeader }) {
                   <li className="header-search__item">
                     <AiOutlineSearch />
                   </li>
-                  <li className="header-search__item">
-                    <Link to="login">
-                      <AiOutlineUser />
-                    </Link>
-                  </li>
+                  {isLogged ? (
+                    <li className="header-search__item">
+                      <IconButton onClick={handleClickMenu}>
+                        <AiOutlineUser />
+                      </IconButton>
+                    </li>
+                  ) : (
+                    <li className="header-search__item">
+                      <Link to="/login">
+                        <AiOutlineUser />
+                      </Link>
+                    </li>
+                  )}
 
                   <li className="header-search__item">
                     <div className="header-search__cart-wrapper">
@@ -140,6 +182,67 @@ function Header({ showHeader }) {
           </Row>
         </Container>
       </div>
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+        onClick={handleCloseMenu}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            mt: 1.5,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            "&:before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
+        <MenuItem>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleLogoutClick}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
     </header>
   );
 }

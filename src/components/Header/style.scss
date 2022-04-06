@@ -40,7 +40,7 @@
     align-items: center;
 
     &__style {
-      border-bottom: 1px solid rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -84,6 +84,10 @@
     &__item {
       margin-left: 22px;
 
+      & > button > svg {
+        font-size: 1.4em;
+      }
+
       & > a {
       }
       & svg {
@@ -108,7 +112,6 @@
       &:hover .header-search__cart-down {
         display: block;
       }
-
 
       &::before {
         position: absolute;
@@ -211,10 +214,9 @@
       &--view {
         background-color: var(--color-primary);
       }
-      
+
       &--checkout {
         background-color: var(--color-orange-bold);
-
       }
     }
   }
