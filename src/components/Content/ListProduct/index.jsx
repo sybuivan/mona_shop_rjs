@@ -3,7 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import Product from "../Product";
 import Fade from "react-reveal/Fade";
 
-function ListProduct({ title, length }) {
+function ListProduct({ title, products = {} }) {
+  console.log(products);
   return (
     <div>
       <Container className="container-fixed">
@@ -11,17 +12,9 @@ function ListProduct({ title, length }) {
           <h2 className="list-product-tilte-text">{title}</h2>
         </div>
         <Row>
-          {Array.from(new Array(length)).map((item, index) => (
-            <Col lg={3} key={index + 1}>
-              {index % 2 === 0 ? (
-                <Fade top>
-                  <Product />
-                </Fade>
-              ) : (
-                <Fade bottom>
-                  <Product />
-                </Fade>
-              )}
+          {products.map((product, index) => (
+            <Col lg={3} key={index}>
+              <Product product={product} />
             </Col>
           ))}
         </Row>

@@ -10,18 +10,18 @@ import Header from "./components/Header";
 function App() {
   const [showHeader, setShowHeader] = useState(false);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const handleScroll = () => {
-  //     if(window.scrollY >= 200) {
-  //       setShowHeader(true)
-  //     } else {
-  //       setShowHeader(false)
-  //     }
-  //   }
+    const handleScroll = () => {
+      if(window.scrollY >= 200) {
+        setShowHeader(true)
+      } else {
+        setShowHeader(false)
+      }
+    }
 
-  //   window.addEventListener('scroll', handleScroll);
-  // }, [])
+    window.addEventListener('scroll', handleScroll);
+  }, [])
   // console.log('header scroll', showHeader);
 
   return (

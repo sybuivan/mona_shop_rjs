@@ -28,13 +28,13 @@ const userSlice = createSlice({
   },
 
   reducers: {
-    logout(action, state) {
+    logout(state) {
       // clear localstorage
       localStorage.removeItem('user');
       localStorage.removeItem('access__token');
 
       // set state current {}
-      state.current = {}
+      state.current = {};
     }
   },
 

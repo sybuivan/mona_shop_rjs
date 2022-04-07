@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -23,16 +23,35 @@ import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/userSlice";
+import categoryApi from "../../api/categoryApi";
 
 function Header({ showHeader }) {
   const loggedInUser = useSelector((state) => state.user.current);
   const isLogged = !!loggedInUser.idUser;
-  console.log("loggerId", loggedInUser);
+  console.log("loggerId", isLogged);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const classHeader = classNames("header", { "header-fiexd": showHeader });
   const [anchorEl, setAnchorEl] = useState(null);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    try {
+      (async () => {
+        const data = await categoryApi.getAll({});
+
+        // console.log({ data, pagination });
+        const { category } = data.data;
+
+        setCategories(category);
+
+        console.log("data category", category);
+      })();
+    } catch (error) {
+      console.log("fail to get product: ", error);
+    }
+  }, []);
 
   const handleClickMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -46,7 +65,7 @@ function Header({ showHeader }) {
   const handleLogoutClick = () => {
     dispatch(logout());
     // navigate("/");
-    console.log('da click');
+    console.log("da click");
   };
   return (
     <header className={classHeader}>
@@ -69,36 +88,18 @@ function Header({ showHeader }) {
                       Giới thiệu
                     </Link>
                   </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Chó cảnh
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Mèo cảnh
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Giới thiệu
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Hamster
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Thỏ
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="/" className="header-nav__link">
-                      Phụ kiện
-                    </Link>
-                  </li>
+
+                  {categories.map((category) => (
+                    <li className="header-nav__item" key={category.idCategory}>
+                      <Link
+                        to={`/${category.path}`}
+                        className="header-nav__link"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+
                   <li className="header-nav__item">
                     <Link to="/" className="header-nav__link">
                       Tin tức
@@ -114,17 +115,17 @@ function Header({ showHeader }) {
                   <li className="header-search__item">
                     <AiOutlineSearch />
                   </li>
-                  {isLogged ? (
-                    <li className="header-search__item">
-                      <IconButton onClick={handleClickMenu}>
-                        <AiOutlineUser />
-                      </IconButton>
-                    </li>
-                  ) : (
+                  {!isLogged ? (
                     <li className="header-search__item">
                       <Link to="/login">
                         <AiOutlineUser />
                       </Link>
+                    </li>
+                  ) : (
+                    <li className="header-search__item">
+                      <IconButton onClick={handleClickMenu}>
+                        <AiOutlineUser />
+                      </IconButton>
                     </li>
                   )}
 

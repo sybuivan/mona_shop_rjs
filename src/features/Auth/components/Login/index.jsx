@@ -16,7 +16,7 @@ function LoginFeature(props) {
   const handleOnSubmit = async (values) => {
     try {
       // dispatch action
-      const resultAction = dispatch(login(values));
+      const resultAction = await dispatch(login(values));
 
       unwrapResult(resultAction);
 
