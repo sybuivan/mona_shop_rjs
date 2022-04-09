@@ -1,0 +1,52 @@
+@import "../../../../assets/css/mixin.scss";
+
+.product-sidebar {
+  &__box {
+  }
+
+  &__title {
+    font-size: 1em;
+    font-weight: 700;
+    color: #353535;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  &__list {
+    padding: 14px 12px;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+  }
+
+  &__item {
+    padding: 12px 0;
+    border-bottom: 1px solid #ececec;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    & > a {
+      @include flex-item-center(center, flex-start);
+      text-decoration: none;
+
+      & img {
+        width: 60px;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  &__info {
+    &-name {
+      color: #353535;
+      padding-bottom: 5px;
+    }
+
+    &-price {
+      color: #272727;
+      font-weight: 600;
+    }
+  }
+}

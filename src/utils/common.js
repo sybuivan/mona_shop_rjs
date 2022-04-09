@@ -4,3 +4,7 @@ export default function formatPrice(price) {
     currency: "VND",
   }).format(price);
 }
+
+export const formatUrl = (urlString) => {
+  return urlString.replace(/ /g, '-');
+}

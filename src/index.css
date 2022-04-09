@@ -11,3 +11,10 @@ code {
 html {
   overflow-x: hidden;
 }
+
+.is-divider.small {
+  width: 40px;
+  height: 4px;
+  display: block;
+  background-color: #dbdbdb;
+}

@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import Images from "../../../constants/images";
 import "./style.scss";
 import formatPrice from "../../../utils/common";
+import { useNavigate } from "react-router-dom";
+import { formatUrl } from "../../../utils/common";
 
 function Product({ product = {} }) {
-  const {name, price, thumbnailUrl} = product;
+  const navigate = useNavigate();
+  const { name, price, thumbnailUrl, idProduct } = product;
+
+  //navigate to productDetail
+  const handleClick = () => {
+    navigate(`products/${idProduct}`);
+  };
   return (
-    <div className="product">
+    <div className="product" onClick={handleClick}>
       <div className="product-wrapper">
         <div className="product-image">
           <Link to="/">
