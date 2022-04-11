@@ -5,9 +5,11 @@
   &__images {
     &-key {
       width: 430px;
-
+      height: 430px;
       & > img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -51,9 +53,15 @@
     margin-top: 15px;
     & li {
       margin-right: 5px;
-
+      opacity: 0.5;
+      cursor: pointer;
       & img {
         width: 80px;
+        height: 80px;
+      }
+
+      &.active {
+        opacity: 1;
       }
     }
   }

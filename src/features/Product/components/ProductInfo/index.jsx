@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -6,8 +6,33 @@ import "./style.scss";
 import AddToCardForm from "../AddToCardForm";
 import { Box } from "@mui/system";
 import ProductTabs from "../ProductTabs";
+import formatPrice from "../../../../utils/common";
+import { useDispatch } from "react-redux";
+import { addToCart, showMiniCart } from "../../../Cart/cartSlice";
 
-function ProductInfo(props) {
+function ProductInfo({ product, images }) {
+  const [active, setActive] = useState(images[0]?.idImage);
+  const [index, setIndex] = useState(0);
+  const dispatch = useDispatch();
+
+  const handleClick = (idImage, index) => {
+    setActive(idImage);
+    setIndex(index);
+  };
+
+  const handleSubmit = ({quantity}) => {
+    console.log('quantity ', quantity);
+    const action = addToCart({
+      id: product[0].idProduct,
+      product,
+      quantity,
+    });
+    console.log('action ', action)
+
+    dispatch(action);
+    dispatch(showMiniCart());
+  };
+
   return (
     <Box className="product-detail-wrapper">
       <div className="product-main">
@@ -16,24 +41,18 @@ function ProductInfo(props) {
             <Col lg={6}>
               <div className="product-main__images">
                 <div className="product-main__images-key">
-                  <img
-                    src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/01.jpg"
-                    alt=""
-                  />
+                  <img src={images[index]?.thumbnailUrl} alt="" />
                 </div>
                 <ul className="product-main__list-images">
-                  <li>
-                    <img
-                      src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/01.jpg"
-                      alt=""
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/01.jpg"
-                      alt=""
-                    />
-                  </li>
+                  {images.map((image, index) => (
+                    <li
+                      key={image.idImage}
+                      className={image.idImage === active ? "active" : ""}
+                      onClick={() => handleClick(image.idImage, index)}
+                    >
+                      <img src={image.thumbnailUrl} alt="" />
+                    </li>
+                  ))}
                 </ul>
               </div>
             </Col>
@@ -45,11 +64,11 @@ function ProductInfo(props) {
                   <span>/</span>
                   <Link to="/">Chó cảnh</Link>
                 </nav>
-                <h1 className="product-main__title">
-                  Chó Phú Quốc thuần chủng
-                </h1>
+                <h1 className="product-main__title">{product[0]?.name}</h1>
                 <span className="is-divider small"></span>
-                <span className="product-main__price">5,896,000 ₫</span>
+                <span className="product-main__price">
+                  {formatPrice(product[0]?.price)}
+                </span>
 
                 <p className="product-main__desc-short">
                   Phú Quốc là một trong số rất hiếm hoi những giống chó thuần
@@ -62,7 +81,7 @@ function ProductInfo(props) {
                   cơ thể.
                 </p>
 
-                <AddToCardForm />
+                <AddToCardForm onSubmit={handleSubmit} />
               </div>
             </Col>
           </Row>

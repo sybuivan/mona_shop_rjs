@@ -24,11 +24,23 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/userSlice";
 import categoryApi from "../../api/categoryApi";
+import { hiddenMiniCart } from "../../features/Cart/cartSlice";
+import NotistackCart from "../../features/Cart/components/NotistackCart";
+import formatPrice from "../../utils/common";
+import {
+  countCartItems,
+  totalPriceCartItems,
+} from "../../features/Cart/selector";
 
 function Header({ showHeader }) {
   const loggedInUser = useSelector((state) => state.user.current);
+  const showCart = useSelector((state) => state.cart.showMiniCart);
+  const listCart = useSelector((state) => state.cart.cartItems);
+  const countCart = useSelector(countCartItems);
+  const totalPrice = useSelector(totalPriceCartItems);
+  console.log("totalPriceCartItems", totalPrice);
+
   const isLogged = !!loggedInUser.idUser;
-  console.log("loggerId", isLogged);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -36,12 +48,19 @@ function Header({ showHeader }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [categories, setCategories] = useState([]);
 
+  // check status showMiniCart
+  if (showCart) {
+    setTimeout(() => {
+      dispatch(hiddenMiniCart());
+    }, 2000);
+  }
+
+  // call API data category home page
   useEffect(() => {
     try {
       (async () => {
         const data = await categoryApi.getAll({});
 
-        // console.log({ data, pagination });
         const { category } = data.data;
 
         setCategories(category);
@@ -133,35 +152,48 @@ function Header({ showHeader }) {
                     <div className="header-search__cart-wrapper">
                       <AiOutlineShoppingCart />
 
-                      <span className="header-search__cart-icon">1</span>
+                      <span className="header-search__cart-icon">
+                        {countCart}
+                      </span>
 
                       <div className="header-search__cart-down">
                         <div className="header-search__cart-down-wrapper">
-                          <ul className="header-search__cart-list">
-                            <li className="header-search__cart-item">
-                              <div className="header-search__cart-info">
-                                <div className="header-search__cart-info-image">
-                                  <img
-                                    src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/1-300x300.jpg"
-                                    alt=""
-                                  />
-                                </div>
+                          {listCart.length > 0 ? (
+                            <div>
+                              <ul className="header-search__cart-list">
+                                {listCart.map((cart, index) => (
+                                  <li className="header-search__cart-item">
+                                    <div className="header-search__cart-info">
+                                      <div className="header-search__cart-info-image">
+                                        <img
+                                          src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/1-300x300.jpg"
+                                          alt=""
+                                        />
+                                      </div>
 
-                                <div className="header-search__cart-info-box">
-                                  <span>Chó american Eskimo</span>
+                                      <div className="header-search__cart-info-box">
+                                        <span>{cart.product[0].name}</span>
 
-                                  <p>1 x 15,000,000 đ</p>
-                                </div>
+                                        <p>
+                                          {cart.quantity} x{" "}
+                                          {formatPrice(cart.product[0].price)}
+                                        </p>
+                                      </div>
 
-                                <div className="header-search__cart-detele">
-                                  <AiOutlineDelete />
-                                </div>
-                              </div>
+                                      <div className="header-search__cart-detele">
+                                        <AiOutlineDelete />
+                                      </div>
+                                    </div>
+                                  </li>
+                                ))}
 
-                              <p className="header-search__cart-total">
-                                <span>Tổng cộng:</span>
-                                <span>15,762,000 ₫</span>
-                              </p>
+                                <p className="header-search__cart-total">
+                                  <span>Tổng cộng: </span>
+                                  <span style={{ fontSize: "1.2em",color: 'red' }}>
+                                    {formatPrice(totalPrice)}
+                                  </span>
+                                </p>
+                              </ul>
 
                               <div className="header-search__button-box">
                                 <button className="header-search__button-cart header-search__button-cart--view">
@@ -171,8 +203,20 @@ function Header({ showHeader }) {
                                   Thanh toán
                                 </button>
                               </div>
-                            </li>
-                          </ul>
+                            </div>
+                          ) : (
+                            <div>
+                              <img
+                                src="https://cdn3.iconfinder.com/data/icons/shopping-and-ecommerce-29/90/empty_cart-512.png"
+                                alt=""
+                                className="header-search__cart-image--empty"
+                              />
+
+                              <p className="header-search__cart-empty">
+                                Chưa có sản phẩm nào trong giỏ hàng
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -244,6 +288,7 @@ function Header({ showHeader }) {
           Logout
         </MenuItem>
       </Menu>
+      {showCart ? <NotistackCart /> : ""}
     </header>
   );
 }

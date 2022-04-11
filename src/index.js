@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { SnackbarProvider } from "notistack";
 import store from "./app/store";
 import ProductFeature from "./features/Product";
+import CartFeature from "./features/Cart";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,6 +28,7 @@ ReactDOM.render(
               <Route path="register" element={<RegisterFeature />} />
 
               <Route path="products/*" element={<ProductFeature />} />
+              <Route path="cart" element={<CartFeature />} />
             </Route>
           </Routes>
         </Provider>

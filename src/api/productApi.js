@@ -6,11 +6,16 @@ const productApi = {
     console.log('url productApi', url);
     return axiosClient.get(url, params);
   },
-  getDetailProduct(params) {
-    const url = `/product-detail/${params}`;
+  getDetailProduct(id) {
+    const url = `/product-detail/${id}`;
     console.log('url productApi', url);
-    return axiosClient.get(url, params);
+    return axiosClient.get(url);
   },
+  getDetailImages(id) {
+    const url = `/product-detail-images/${id}`;
+    console.log('url productApi', url);
+    return axiosClient.get(url);
+  }
 };
 
 export default productApi

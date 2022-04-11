@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import "./style.scss";
 
-function AddToCardForm(props) {
+function AddToCardForm({onSubmit}) {
   const schema = yup.object().shape({
     quantity: yup
       .number()
@@ -17,7 +17,8 @@ function AddToCardForm(props) {
   });
 
   const handleOnSubmit = (values) => {
-    console.log("values", values);
+    if(!onSubmit) return
+    onSubmit(values);
   };
 
   const {
@@ -47,7 +48,7 @@ function AddToCardForm(props) {
             />
           </div>
           <div className="form-card__button-wrapper">
-            <Button>Thêm vào giỏ hàng</Button>
+            <Button type="submit">Thêm vào giỏ hàng</Button>
           </div>
         </form>
       </div>
