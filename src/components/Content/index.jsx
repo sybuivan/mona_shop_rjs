@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import ListProduct from "./ListProduct";
-import Information from "./Information";
-import BannerFill from "./BannerFill";
-import NewsComponent from "./News/index";
+import productApi from "../../api/productApi";
 import "../../assets/css/titleHome.scss";
 import Banner from "../Banner";
-import productApi from "../../api/productApi";
+import BannerFill from "./BannerFill";
+import Information from "./Information";
+import ListProduct from "./ListProduct";
+import NewsComponent from "./News/index";
 
 function Content(props) {
   const [productDog, setProductDog] = useState([]);

@@ -63,7 +63,7 @@
   }
 
   &__box-button {
-    @include flex-item-center(center, end);
+    @include flex-item-center(center, flex-end);
   }
 
   &__button {

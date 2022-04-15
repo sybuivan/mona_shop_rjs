@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Images from "../../constants/images";
-import './style.scss'
+import './style.scss';
 
 function Footer(props) {
   return (
@@ -16,19 +15,19 @@ function Footer(props) {
 
               <ul className="footer-left__list">
                 <li>
-                  <Link to="#" className="active">Trang chủ</Link>
+                  <Link to="/hi" className="active">Trang chủ</Link>
                 </li>
                 <li>
-                  <Link to="#">Về chúng tôi</Link>
+                  <Link to="/hi">Về chúng tôi</Link>
                 </li>
                 <li>
-                  <Link to="#">Sản phẩm</Link>
+                  <Link to="/hi">Sản phẩm</Link>
                 </li>
                 <li>
-                  <Link to="#">Điểm tin hữu ích</Link>
+                  <Link to="/hi">Điểm tin hữu ích</Link>
                 </li>
                 <li>
-                  <Link to="#">Liên hệ</Link>
+                  <Link to="/hi">Liên hệ</Link>
                 </li>
               </ul>
             </div>

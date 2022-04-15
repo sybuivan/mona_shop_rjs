@@ -1,18 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
 
 function ProductRelated(props) {
   return (
     <div className="product-related">
-      <h2 className="product-related__tilte">
-         Sản phẩm tương tự
-      </h2>
+      <h2 className="product-related__tilte">Sản phẩm tương tự</h2>
 
       {/* List product related */}
     </div>
-  )
+  );
 }
 
-ProductRelated.propTypes = {}
-
-export default ProductRelated
+export default ProductRelated;

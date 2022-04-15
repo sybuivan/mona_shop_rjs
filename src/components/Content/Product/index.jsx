@@ -1,11 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import Images from "../../../constants/images";
-import "./style.scss";
+import { Link, useNavigate } from "react-router-dom";
 import formatPrice from "../../../utils/common";
-import { useNavigate } from "react-router-dom";
-import { formatUrl } from "../../../utils/common";
+import "./style.scss";
 
 function Product({ product = {} }) {
   const navigate = useNavigate();

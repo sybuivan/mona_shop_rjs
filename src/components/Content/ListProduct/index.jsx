@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Product from "../Product";
-import Fade from "react-reveal/Fade";
 
 function ListProduct({ title, products = {} }) {
   console.log(products);

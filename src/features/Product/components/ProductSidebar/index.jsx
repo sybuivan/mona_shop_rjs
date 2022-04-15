@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
@@ -75,7 +74,5 @@ function ProductSidebar(props) {
     </div>
   );
 }
-
-ProductSidebar.propTypes = {};
 
 export default ProductSidebar;

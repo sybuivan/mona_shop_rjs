@@ -1,13 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "@restart/ui/esm/Button";
-import QuantityField from "../../../../form-control/QuantityField/QuantityField";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import Button from "@restart/ui/esm/Button";
+import React from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import QuantityField from "../../../../form-control/QuantityField/QuantityField";
 import "./style.scss";
 
-function AddToCardForm({onSubmit}) {
+function AddToCardForm({ onSubmit }) {
   const schema = yup.object().shape({
     quantity: yup
       .number()
@@ -17,7 +16,7 @@ function AddToCardForm({onSubmit}) {
   });
 
   const handleOnSubmit = (values) => {
-    if(!onSubmit) return
+    if (!onSubmit) return;
     onSubmit(values);
   };
 
@@ -25,7 +24,7 @@ function AddToCardForm({onSubmit}) {
     handleSubmit,
     control,
     setValue,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       quantity: 1,
@@ -55,7 +54,5 @@ function AddToCardForm({onSubmit}) {
     </div>
   );
 }
-
-AddToCardForm.propTypes = {};
 
 export default AddToCardForm;

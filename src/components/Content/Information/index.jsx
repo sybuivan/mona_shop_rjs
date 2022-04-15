@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./style.scss";
 import { Col, Container, Row } from "react-bootstrap";
+import { ReactComponent as Cork_svg } from "../../../assets/svg/cork-svgrepo-com.svg";
 import { ReactComponent as Dog_svg } from "../../../assets/svg/dog-svgrepo-com.svg";
 import { ReactComponent as Gift_svg } from "../../../assets/svg/gift-svgrepo-com.svg";
-import { ReactComponent as Cork_svg } from "../../../assets/svg/cork-svgrepo-com.svg";
+import "./style.scss";
 
 function Information(props) {
   return (

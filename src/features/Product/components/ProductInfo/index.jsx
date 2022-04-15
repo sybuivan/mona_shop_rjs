@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./style.scss";
-import AddToCardForm from "../AddToCardForm";
 import { Box } from "@mui/system";
-import ProductTabs from "../ProductTabs";
-import formatPrice from "../../../../utils/common";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import formatPrice from "../../../../utils/common";
 import { addToCart, showMiniCart } from "../../../Cart/cartSlice";
+import AddToCardForm from "../AddToCardForm";
+import ProductTabs from "../ProductTabs";
+import "./style.scss";
 
 function ProductInfo({ product, images }) {
   const [active, setActive] = useState(images[0]?.idImage);
@@ -20,14 +19,15 @@ function ProductInfo({ product, images }) {
     setIndex(index);
   };
 
-  const handleSubmit = ({quantity}) => {
-    console.log('quantity ', quantity);
+  const handleSubmit = ({ quantity }) => {
+    console.log("quantity ", quantity);
     const action = addToCart({
       id: product[0].idProduct,
       product,
       quantity,
+      status: false,
     });
-    console.log('action ', action)
+    console.log("action ", action);
 
     dispatch(action);
     dispatch(showMiniCart());
@@ -94,7 +94,5 @@ function ProductInfo({ product, images }) {
     </Box>
   );
 }
-
-ProductInfo.propTypes = {};
 
 export default ProductInfo;

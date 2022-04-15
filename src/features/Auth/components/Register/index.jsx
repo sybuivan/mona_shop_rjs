@@ -1,18 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Container } from "react-bootstrap";
-import RegisterForm from "../RegisterForm";
-import { useDispatch } from "react-redux";
-import { register } from "../../userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useSnackbar } from 'notistack';
+import React from "react";
+import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { register } from "../../userSlice";
+import RegisterForm from "../RegisterForm";
 
 function RegisterFeature(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const handleOnSubmit = async (values) => {
     try {
       const resultAction = await dispatch(register(values));

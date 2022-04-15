@@ -77,7 +77,7 @@
   &-search {
     height: 100%;
     &__list {
-      @include flex-item-center(center, end);
+      @include flex-item-center(center, flex-end);
       height: 100%;
     }
 

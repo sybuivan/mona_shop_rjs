@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Box } from "@mui/system";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -29,7 +28,5 @@ function ProductTabs(props) {
     </Box>
   );
 }
-
-ProductTabs.propTypes = {};
 
 export default ProductTabs;

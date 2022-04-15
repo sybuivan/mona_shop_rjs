@@ -43,7 +43,7 @@
   }
 
   &__forgot {
-    @include flex-item-center(center, end);
+    @include flex-item-center(center, flex-end);
     padding: 20px 0;
   }
 

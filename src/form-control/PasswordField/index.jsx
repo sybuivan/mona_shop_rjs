@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Controller } from "react-hook-form";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
   FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
-  OutlinedInput,
+  OutlinedInput
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React, { useState } from "react";
+import { Controller } from "react-hook-form";
 
 function PasswordField({ name, control, errors, label }) {
   const hasError = errors[name];

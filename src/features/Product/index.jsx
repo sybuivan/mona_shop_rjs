@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Box } from "@mui/system";
 import { Route, Routes } from "react-router";
 import DetailProduct from "./page/DetailsProduct";
@@ -14,6 +13,5 @@ function ProductFeature(props) {
   );
 }
 
-ProductFeature.propTypes = {};
 
 export default ProductFeature;

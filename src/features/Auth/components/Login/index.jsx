@@ -1,16 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import LoginForm from "../LoginForm";
-import { Container } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { login } from "../../userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useSnackbar } from "notistack";
+import React from "react";
+import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { login } from "../../userSlice";
+import LoginForm from "../LoginForm";
 
 function LoginFeature(props) {
   const dispatch = useDispatch();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const handleOnSubmit = async (values) => {

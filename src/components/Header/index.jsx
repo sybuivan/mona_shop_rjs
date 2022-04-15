@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Images from "../../constants/images";
-import {
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-  AiOutlineDelete,
-} from "react-icons/ai";
-import "./style.scss";
-import classNames from "classnames";
+import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 import {
   Avatar,
   Divider,
   IconButton,
   ListItemIcon,
   Menu,
-  MenuItem,
+  MenuItem
 } from "@mui/material";
-import { Logout, PersonAdd, Settings } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import {
+  AiOutlineDelete, AiOutlineSearch,
+  AiOutlineShoppingCart,
+  AiOutlineUser
+} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../features/Auth/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 import categoryApi from "../../api/categoryApi";
+import Images from "../../constants/images";
+import { logout } from "../../features/Auth/userSlice";
 import { hiddenMiniCart } from "../../features/Cart/cartSlice";
 import NotistackCart from "../../features/Cart/components/NotistackCart";
-import formatPrice from "../../utils/common";
 import {
   countCartItems,
-  totalPriceCartItems,
+  totalPriceCartItems
 } from "../../features/Cart/selector";
+import formatPrice from "../../utils/common";
+import "./style.scss";
 
 function Header({ showHeader }) {
   const loggedInUser = useSelector((state) => state.user.current);
@@ -149,7 +146,10 @@ function Header({ showHeader }) {
                   )}
 
                   <li className="header-search__item">
-                    <div className="header-search__cart-wrapper">
+                    <div
+                      className="header-search__cart-wrapper"
+                      onClick={() => navigate("/cart")}
+                    >
                       <AiOutlineShoppingCart />
 
                       <span className="header-search__cart-icon">
@@ -166,8 +166,8 @@ function Header({ showHeader }) {
                                     <div className="header-search__cart-info">
                                       <div className="header-search__cart-info-image">
                                         <img
-                                          src="http://mauweb.monamedia.net/thunuoi/wp-content/uploads/2018/04/1-300x300.jpg"
-                                          alt=""
+                                          src={cart.product[0].thumbnailUrl}
+                                          alt={cart.product[0].name}
                                         />
                                       </div>
 
@@ -189,14 +189,19 @@ function Header({ showHeader }) {
 
                                 <p className="header-search__cart-total">
                                   <span>Tổng cộng: </span>
-                                  <span style={{ fontSize: "1.2em",color: 'red' }}>
+                                  <span
+                                    style={{ fontSize: "1.2em", color: "red" }}
+                                  >
                                     {formatPrice(totalPrice)}
                                   </span>
                                 </p>
                               </ul>
 
                               <div className="header-search__button-box">
-                                <button className="header-search__button-cart header-search__button-cart--view">
+                                <button
+                                  className="header-search__button-cart header-search__button-cart--view"
+                                  onClick={() => navigate("/cart")}
+                                >
                                   Xem giỏ hàng
                                 </button>
                                 <button className="header-search__button-cart header-search__button-cart--checkout">
