@@ -24,17 +24,17 @@ function ListNews(props) {
           modules={[ Navigation]}
           className="mySwiper"
         >
-          <Col lg={4}>
+          <Col lg={4} md={6}>
             <SwiperSlide>
               <News />
             </SwiperSlide>
           </Col>
-          <Col lg={4}>
+          <Col lg={4} md={6}>
             <SwiperSlide>
               <News />
             </SwiperSlide>
           </Col>
-          <Col lg={4}>
+          <Col lg={4} md={6}>
             <SwiperSlide>
               <News />
             </SwiperSlide>

@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   paperBox: {
     position: "relative",
     width: "100%",
+    zIndex: "10",
   },
 
   wrapper: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 
     "& span": {
       paddingBottom: "15px",
-      display: "block"
+      display: "block",
     },
   },
 
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
-function NotistackCart(props) {
+function NotistackCart() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -12,7 +12,9 @@ import { Provider } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import ProductFeature from "./features/Product";
 import CartFeature from "./features/Cart";
-import store from './app/store'
+import store from "./app/store";
+import CheckoutFeature from "./features/Checkout";
+import DetailProduct from "./features/Product/page/DetailsProduct";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,11 +27,14 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<Content />} />
+            <Route path="/product/:productId" element={<DetailProduct />} />
             <Route path="login" element={<LoginFeature />} />
             <Route path="register" element={<RegisterFeature />} />
 
-            <Route path="products/*" element={<ProductFeature />} />
+            <Route path="category/*" element={<ProductFeature />} />
+
             <Route path="cart" element={<CartFeature />} />
+            <Route path="checkout" element={<CheckoutFeature />} />
           </Route>
         </Routes>
       </Provider>

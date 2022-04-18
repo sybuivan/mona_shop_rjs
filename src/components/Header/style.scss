@@ -20,11 +20,12 @@
   height: 100px;
   background-color: var(--color-white);
 
-  &-fiexd {
+  &-fixed {
     position: fixed;
     height: 70px;
     left: 0;
     right: 0;
+    top: 0;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
     animation: stuckMoveDown 0.6s;
@@ -71,6 +72,18 @@
       font-size: 0.9em;
       color: var(--color-text-gray66);
       font-weight: 600;
+    }
+
+    &__bar-icon {
+      @include flex-item-center(center, center);
+      height: 100%;
+      &  svg {
+        font-size: 1.2em;
+      }
+    }
+
+    &__bar-tablet {
+      display: none;
     }
   }
 
@@ -235,7 +248,15 @@
     &__cart-empty {
       text-align: center;
       font-size: 1.1em;
-
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-nav-tablet {
+    display: none;
+  }
+  .header-nav__bar-tablet {
+    display: block;
   }
 }

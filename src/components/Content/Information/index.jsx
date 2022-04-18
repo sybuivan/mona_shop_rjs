@@ -12,7 +12,7 @@ function Information(props) {
         <div className="information-container-wrapper">
           <Container className="container-fixed">
             <Row>
-              <Col lg={4}>
+              <Col lg={4} md={12}>
                 <div className="information-container__box">
                   <div className="information-container__icon">
                     <Dog_svg />
@@ -28,7 +28,7 @@ function Information(props) {
                   </div>
                 </div>
               </Col>
-              <Col lg={4}>
+              <Col lg={4} md={12}>
                 <div className="information-container__box">
                   <div className="information-container__icon">
                     <Gift_svg />
@@ -42,7 +42,7 @@ function Information(props) {
                   </div>
                 </div>
               </Col>
-              <Col lg={4}>
+              <Col lg={4} md={12}>
                 <div className="information-container__box">
                   <div className="information-container__icon">
                     <Cork_svg />

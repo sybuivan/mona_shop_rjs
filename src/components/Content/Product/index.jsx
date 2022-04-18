@@ -1,15 +1,15 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import formatPrice from "../../../utils/common";
 import "./style.scss";
 
 function Product({ product = {} }) {
   const navigate = useNavigate();
-  const { name, price, thumbnailUrl, idProduct } = product;
+  const { name, price, thumbnailUrl, idProduct, categoryName, path } = product;
 
   //navigate to productDetail
   const handleClick = () => {
-    navigate(`products/${idProduct}`);
+    navigate(`product/${idProduct}`);
   };
   return (
     <div className="product" onClick={handleClick}>
@@ -23,7 +23,7 @@ function Product({ product = {} }) {
           </div>
         </div>
         <div className="product-info">
-          <p className="product-info__type">Chó cảnh</p>
+          <p className="product-info__type">{categoryName}</p>
           <p className="product-info__name">{name}</p>
           <p className="product-info__price">{formatPrice(price)}</p>
         </div>

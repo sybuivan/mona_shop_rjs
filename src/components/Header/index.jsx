@@ -5,15 +5,17 @@ import {
   IconButton,
   ListItemIcon,
   Menu,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import {
-  AiOutlineDelete, AiOutlineSearch,
+  AiOutlineBars,
+  AiOutlineDelete,
+  AiOutlineSearch,
   AiOutlineShoppingCart,
-  AiOutlineUser
+  AiOutlineUser,
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,7 +26,7 @@ import { hiddenMiniCart } from "../../features/Cart/cartSlice";
 import NotistackCart from "../../features/Cart/components/NotistackCart";
 import {
   countCartItems,
-  totalPriceCartItems
+  totalPriceCartItems,
 } from "../../features/Cart/selector";
 import formatPrice from "../../utils/common";
 import "./style.scss";
@@ -35,13 +37,12 @@ function Header({ showHeader }) {
   const listCart = useSelector((state) => state.cart.cartItems);
   const countCart = useSelector(countCartItems);
   const totalPrice = useSelector(totalPriceCartItems);
-  console.log("totalPriceCartItems", totalPrice);
 
   const isLogged = !!loggedInUser.idUser;
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const classHeader = classNames("header", { "header-fiexd": showHeader });
+  const classHeader = classNames("header", { "header-fixed": showHeader });
   const [anchorEl, setAnchorEl] = useState(null);
   const [categories, setCategories] = useState([]);
 
@@ -69,6 +70,13 @@ function Header({ showHeader }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (window.screen.width <= 768 && showHeader) {
+      document.querySelector(".header").classList.remove("header-fixed");
+      console.log("remove class");
+    }
+  }, [showHeader]);
+
   const handleClickMenu = (e) => {
     setAnchorEl(e.currentTarget);
     // navigate("/login");
@@ -88,7 +96,7 @@ function Header({ showHeader }) {
       <div className="header-wrapper">
         <Container className="container-fixed header-wrapper__style">
           <Row>
-            <Col lg={2}>
+            <Col lg={2} md={5}>
               <div className="header-logo">
                 <Link to="/">
                   <img src={Images.LOGO} alt="" className="header-logo__img" />
@@ -96,7 +104,15 @@ function Header({ showHeader }) {
               </div>
             </Col>
 
-            <Col lg={8}>
+            <Col md={2} className="header-nav__bar-tablet">
+              <div className="header-nav__bar-icon">
+                <IconButton>
+                  <AiOutlineBars />
+                </IconButton>
+              </div>
+            </Col>
+
+            <Col lg={8} className="header-nav-tablet">
               <div className="header-nav">
                 <ul className="header-nav__list">
                   <li className="header-nav__item">
@@ -108,7 +124,7 @@ function Header({ showHeader }) {
                   {categories.map((category) => (
                     <li className="header-nav__item" key={category.idCategory}>
                       <Link
-                        to={`/${category.path}`}
+                        to={`category/${category.path}`}
                         className="header-nav__link"
                       >
                         {category.name}
@@ -125,7 +141,7 @@ function Header({ showHeader }) {
               </div>
             </Col>
 
-            <Col lg={2}>
+            <Col lg={2} md={5}>
               <div className="header-search">
                 <ul className="header-search__list">
                   <li className="header-search__item">

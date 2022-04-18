@@ -12,7 +12,7 @@ function ListProduct({ title, products = {} }) {
         </div>
         <Row>
           {products.map((product, index) => (
-            <Col lg={3} key={index}>
+            <Col lg={3} key={index} md={6}>
               <Product product={product} />
             </Col>
           ))}

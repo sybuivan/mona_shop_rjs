@@ -1,0 +1,47 @@
+@import "../../../../assets/css/mixin.scss";
+.list-product-checkout {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin: 40px 0;
+  padding: 20px;
+  &__head {
+    display: grid;
+    grid-template-columns: 650px 115px 240px 120px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+
+    &-title {
+      color: var(--color-text);
+    }
+  }
+
+  &__main {
+    &-item {
+      display: grid;
+      grid-template-columns: 650px 115px 240px 120px;
+      padding-bottom: 20px;
+      & img {
+        width: 60px;
+        margin-right: 16px;
+        border-radius: 5px;
+      }
+
+      & p {
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+    }
+    &--default {
+      @include flex-item-center(center, flex-start);
+    }
+
+    &-info {
+    }
+
+    &-price {
+    }
+    &-quantity {
+    }
+    &-total {
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button, Checkbox, IconButton, Paper } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import formatPrice from "../../../utils/common";
@@ -70,9 +70,15 @@ function CartList({ cartList }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const statusCartAll = useSelector((state) => state.cart.statusCartAll);
 
-  console.log("statusCartAll", statusCartAll);
+  const statusCartAll = useSelector((state) => state.cart.statusCartAll);
+  const loggedInUser = useSelector((state) => state.user.current);
+  const isLogged = !!loggedInUser.idUser;
+
+  console.log("loggedInUser", isLogged);
+  const handleClick = () => {
+    isLogged ? navigate("/checkout") : navigate("/login")
+  };
 
   const countCartChecked = useSelector(countCheckCartItems);
   const totalCartChecked = useSelector(totalPriceCartChecked);
@@ -130,7 +136,7 @@ function CartList({ cartList }) {
                 </span>
               </div>
 
-              <div className={classes.cartButton}>
+              <div className={classes.cartButton} onClick={handleClick}>
                 {countCartChecked > 0 ? (
                   <Button variant="contained">Đặt hàng</Button>
                 ) : (

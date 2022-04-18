@@ -1,0 +1,42 @@
+@import "../../../../assets/css/mixin.scss";
+.pay-method {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 12px 20px;
+  &__head {
+    @include flex-item-center(center, space-between);
+    font-size: 1.1em;
+    border-bottom: 1px dashed var(--color-text);
+    padding-bottom: 20px;
+    & div button {
+      margin-left: 12px;
+    }
+  }
+  &__main {
+    @include flex-item-center(center, flex-end);
+    padding-top: 20px;
+
+    & span:first-child {
+      color: var(--color-text);
+    }
+    &-wrapper {
+      border-bottom: 1px dashed var(--color-text);
+    }
+    &-row {
+      margin-bottom: 16px;
+      @include flex-item-center(center, space-between);
+      width: 300px;
+      max-width: 400px;
+      font-size: 1.1em;
+    }
+
+    &-total {
+      font-size: 1.4em;
+      color: var(--color-orange-bold);
+      font-weight: 600;
+    }
+  }
+  &__footer {
+    @include flex-item-center(center, flex-end);
+    padding-top: 20px;
+  }
+}

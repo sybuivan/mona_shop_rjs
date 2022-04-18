@@ -58,7 +58,7 @@
 
     & > input {
       max-width: 400px;
-      width: 300px;
+      // width: 300px;
       outline: none;
       padding: 10px 4px;
       border-radius: 3px;
@@ -91,5 +91,17 @@
         display: inline;
       }
     }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .footer-left, .footer-center,.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-right {
+    margin-top: 20px;
   }
 }
