@@ -5,43 +5,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { hiddenMiniCart } from "../cartSlice";
-
-const useStyles = makeStyles({
-  paperBox: {
-    position: "relative",
-    width: "100%",
-    zIndex: "10",
-  },
-
-  wrapper: {
-    padding: "40px 30px",
-    // animation: "myEffect 3s ease",
-    position: "absolute",
-    top: 0,
-    backgroundColor: "#fff",
-    boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-    border: "1px solid #85d6df",
-    right: "32px",
-    borderRadius: "4px",
-    fontSize: "1.2em",
-
-    "& span": {
-      paddingBottom: "15px",
-      display: "block",
-    },
-  },
-
-  boxButton: {
-    marginTop: "12px",
-
-    "& > button": {
-      marginRight: "8px",
-    },
-  },
-});
+import './style.scss'
 
 function NotistackCart() {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,10 +15,10 @@ function NotistackCart() {
     dispatch(hiddenMiniCart());
   };
   return (
-    <Box className={classes.paperBox}>
-      <Box className={classes.wrapper}>
+    <Box className="paperBox">
+      <Box className="wrapper">
         <span>Thêm sản phẩm vào giỏ hành thành công</span>
-        <Box className={classes.boxButton}>
+        <Box className="boxButton">
           <Button
             variant="contained"
             color="primary"

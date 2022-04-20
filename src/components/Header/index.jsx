@@ -30,6 +30,7 @@ import {
 } from "../../features/Cart/selector";
 import formatPrice from "../../utils/common";
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
 function Header({ showHeader }) {
   const loggedInUser = useSelector((state) => state.user.current);
@@ -44,6 +45,13 @@ function Header({ showHeader }) {
   const navigate = useNavigate();
   const classHeader = classNames("header", { "header-fixed": showHeader });
   const [anchorEl, setAnchorEl] = useState(null);
+
+  // setActive class navbar item
+  const [active, setActive] = useState(0);
+  const handleClickNav = (id) => {
+    setActive(id);
+  };
+
   const [categories, setCategories] = useState([]);
 
   // check status showMiniCart
@@ -122,10 +130,18 @@ function Header({ showHeader }) {
                   </li>
 
                   {categories.map((category) => (
-                    <li className="header-nav__item" key={category.idCategory}>
+                    <li
+                      className="header-nav__item"
+                      key={category.idCategory}
+                      onClick={() => handleClickNav(category.id)}
+                    >
                       <Link
-                        to={`category/${category.path}`}
-                        className="header-nav__link"
+                        to={`category/${category.idCategory}`}
+                        className={
+                          category.idCategory === active
+                            ? "header-nav__link header-nav__link--active"
+                            : "header-nav__link"
+                        }
                       >
                         {category.name}
                       </Link>
@@ -182,17 +198,17 @@ function Header({ showHeader }) {
                                     <div className="header-search__cart-info">
                                       <div className="header-search__cart-info-image">
                                         <img
-                                          src={cart.product[0].thumbnailUrl}
-                                          alt={cart.product[0].name}
+                                          src={cart.product.thumbnailUrl}
+                                          alt={cart.product.name}
                                         />
                                       </div>
 
                                       <div className="header-search__cart-info-box">
-                                        <span>{cart.product[0].name}</span>
+                                        <span>{cart.product.name}</span>
 
                                         <p>
                                           {cart.quantity} x{" "}
-                                          {formatPrice(cart.product[0].price)}
+                                          {formatPrice(cart.product.price)}
                                         </p>
                                       </div>
 

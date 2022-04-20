@@ -16,10 +16,12 @@ const productApi = {
     return axiosClient.get(url);
   },
 
-  getAllProductsByCateogry(path){
-    const url = `/products/${path}`;
-    return axiosClient.get(url);
-  }
+  getAllProductsByParams(params) {
+    return axiosClient.get("/products/", { params: params });
+  },
+  getAllProductsByCateogry(idCategory) {
+    return axiosClient.get(`/products/${idCategory}`);
+  },
 };
 
-export default productApi
+export default productApi;

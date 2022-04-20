@@ -5,29 +5,51 @@ import ProductList from "../../components/ProductList";
 import productApi from "../../../../api/productApi";
 import { useParams, Outlet } from "react-router";
 import BreadcrumbCom from "../../../../components/Common/Breadcrumb";
+import FilterBar from "../../components/FilterBar";
+import categoryApi from "../../../../api/categoryApi";
 
 function ListPageProduct(props) {
   const [products, setProducts] = useState([]);
 
-  const { nameCategory, productId } = useParams();
+  const { idCategory, productId } = useParams();
+  const [filters, setFilters] = useState({ idCategory: idCategory });
 
-  if(products.length > 0) {
-    var title = products[0].categoryName
+  if (products.length > 0) {
+    var title = products[0].categoryName;
   }
 
+  console.log("filters", filters);
   useEffect(() => {
     try {
       (async () => {
-        const response = await productApi.getAllProductsByCateogry(
-          nameCategory
-        );
+        const response = await productApi.getAllProductsByParams(filters);
+
         const dataProducts = response.data.products;
+
         setProducts(dataProducts);
       })();
     } catch (error) {
       console.error(error);
     }
-  }, [nameCategory]);
+  }, [filters]);
+
+  useEffect(() => {
+    try {
+      (async () => {
+        const response = await productApi.getAllProductsByCateogry(idCategory);
+
+        const dataProducts = response.data.products;
+
+        setProducts(dataProducts);
+      })();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [idCategory]);
+
+  const setFiltersViewer = (newFilters) => {
+    setFilters(newFilters);
+  };
 
   if (!!productId) {
     return (
@@ -40,10 +62,12 @@ function ListPageProduct(props) {
       <div className="list-page-product">
         <Container className="container-fixed">
           <Row>
-            <Col lg={3}>
-              <BreadcrumbCom title={title}/>
+            <Col lg={2}>
+              <BreadcrumbCom title={title} />
+
+              <FilterBar filters={filters} onChange={setFiltersViewer} />
             </Col>
-            <Col lg={9}>
+            <Col lg={10}>
               <ProductList products={products} />
             </Col>
           </Row>

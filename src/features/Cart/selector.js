@@ -12,7 +12,7 @@ export const totalPriceCartItems = createSelector(
   cartItemsSelector,
   (cartItems) =>
     cartItems.reduce(
-      (total, cart) => total + cart.quantity * cart.product[0].price,
+      (total, cart) => total + cart.quantity * cart.product.price,
       0
     )
 );
@@ -29,7 +29,7 @@ export const totalPriceCartChecked = createSelector(
   (cartItems) =>
     cartItems.reduce(
       (total, cart) =>
-        cart.status ? total + cart.quantity * cart.product[0].price : total,
+        cart.status ? total + cart.quantity * cart.product.price : total,
       0
     )
 );

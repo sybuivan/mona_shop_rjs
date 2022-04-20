@@ -14,6 +14,7 @@ function ProductInfo({ product, images }) {
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
 
+  console.log(product[0]);
   const handleClick = (idImage, index) => {
     setActive(idImage);
     setIndex(index);
@@ -23,7 +24,7 @@ function ProductInfo({ product, images }) {
     console.log("quantity ", quantity);
     const action = addToCart({
       id: product[0].idProduct,
-      product,
+      product: product[0],
       quantity,
       status: false,
     });

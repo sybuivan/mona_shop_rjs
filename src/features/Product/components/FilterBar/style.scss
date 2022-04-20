@@ -1,0 +1,38 @@
+.filter-bar {
+  &__head {
+    padding-bottom: 20px;
+    font-size: 1.2em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    & span {
+      padding-left: 20px;
+      font-weight: 600;
+    }
+  }
+
+  &__category {
+    padding-top: 20px;
+    &-list {
+      & > li {
+        position: relative;
+        padding-bottom: 15px;
+        font-size: 1.2em;
+        cursor: pointer;
+
+        & span {
+          margin-left: 15px;
+        }
+        &.active::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 2px;
+          border-top: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-bottom: 7px solid transparent;
+          border-left: 7px solid #fff;
+          border-left-color: var(--color-orange-bold);
+        }
+      }
+    }
+  }
+}

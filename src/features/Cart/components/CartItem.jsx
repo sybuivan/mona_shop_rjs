@@ -115,12 +115,12 @@ function CartItem({ cart }) {
             <Checkbox checked={status || false} onChange={handleCheck} />
           </label>
           <Box className={classes.productImage}>
-            <img src={product[0].thumbnailUrl} alt="" />
-            <span className={classes.productName}>{product[0].name}</span>
+            <img src={product.thumbnailUrl} alt="" />
+            <span className={classes.productName}>{product.name}</span>
           </Box>
         </Box>
         <span className={classes.productPrice}>
-          {formatPrice(product[0].price)}
+          {formatPrice(product.price)}
         </span>
         <Box className={classes.boxQuantity}>
           <IconButton
@@ -135,7 +135,7 @@ function CartItem({ cart }) {
           </IconButton>
         </Box>
         <p style={{ color: "red", marginTop: 0, fontWeight: "600" }}>
-          {formatPrice(product[0].price * quantity)}
+          {formatPrice(product.price * quantity)}
         </p>
         <IconButton onClick={() => setOpen(true)}>
           <DeleteOutlineIcon />
