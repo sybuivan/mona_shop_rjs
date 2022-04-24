@@ -6,15 +6,17 @@ import FilterbyCategory from "../Filter/filterByCategory";
 import "./style.scss";
 
 const FilterBar = ({ onChange, filters }) => {
+  
   if (filters) {
     var idCategory = filters.idCategory;
   }
-  const handleCategoryChange = (newId) => {
+  const handleCategoryChange = ({ idCategory, path }) => {
     if (!onChange) return;
 
     const newFilters = {
       ...filters,
-      idCategory: newId + "",
+      idCategory: idCategory + "",
+      path: path
     };
 
     onChange(newFilters);

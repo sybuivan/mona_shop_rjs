@@ -10,8 +10,6 @@ function ListProductCheckout(props) {
     state.cart.cartItems.filter((cart) => cart.status === true)
   );
 
-
-
   return (
     <div className="list-product-checkout">
       <div className="list-product-checkout__head">
@@ -26,19 +24,19 @@ function ListProductCheckout(props) {
           <div className="list-product-checkout__main-item" key={cart.id}>
             <div className="list-product-checkout__main-info list-product-checkout__main--default">
               <img
-                src={cart.product[0].thumbnailUrl}
-                alt={cart.product[0].name}
+                src={cart.product.thumbnailUrl}
+                alt={cart.product.name}
               />
-              <p>{cart.product[0].name}</p>
+              <p>{cart.product.name}</p>
             </div>
             <div className="list-product-checkout__main-price list-product-checkout__main--default">
-              <span>{formatPrice(cart.product[0].price)}</span>
+              <span>{formatPrice(cart.product.price)}</span>
             </div>
             <div className="list-product-checkout__main-quantity list-product-checkout__main--default">
               <span>{cart.quantity}</span>
             </div>
             <div className="list-product-checkout__main-total list-product-checkout__main--default">
-              <span>{formatPrice(cart.product[0].price * cart.quantity)}</span>
+              <span>{formatPrice(cart.product.price * cart.quantity)}</span>
             </div>
           </div>
         ))}

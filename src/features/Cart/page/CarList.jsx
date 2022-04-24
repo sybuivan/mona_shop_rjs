@@ -1,13 +1,25 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Button, Checkbox, IconButton, Paper } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Dialog,
+  DialogTitle,
+  IconButton,
+  Paper,
+} from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
+import { AiFillDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import formatPrice from "../../../utils/common";
-import { checkStatusCartAll } from "../cartSlice";
+import { checkStatusCartAll, removeCartAll } from "../cartSlice";
 import CartItem from "../components/CartItem";
 import { countCheckCartItems, totalPriceCartChecked } from "../selector";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
 const useStyles = makeStyles({
   content: {
@@ -31,6 +43,7 @@ const useStyles = makeStyles({
     bottom: 0,
     right: 0,
     left: 0,
+    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
     backgroundColor: "#fff",
     zIndex: 3,
   },
@@ -63,13 +76,16 @@ const useStyles = makeStyles({
     color: "red",
   },
 
-  removeAll: {},
+  removeAll: {
+    marginLeft: "14px",
+  },
 });
 
 function CartList({ cartList }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const statusCartAll = useSelector((state) => state.cart.statusCartAll);
   const loggedInUser = useSelector((state) => state.user.current);
@@ -77,7 +93,7 @@ function CartList({ cartList }) {
 
   console.log("loggedInUser", isLogged);
   const handleClick = () => {
-    isLogged ? navigate("/checkout") : navigate("/login")
+    isLogged ? navigate("/checkout") : navigate("/login");
   };
 
   const countCartChecked = useSelector(countCheckCartItems);
@@ -90,6 +106,13 @@ function CartList({ cartList }) {
       })
     );
   };
+
+  const handleRemoveAll = () => {
+    dispatch(removeCartAll());
+
+    setOpen(false)
+  };
+
   if (cartList.length > 0) {
     return (
       <div>
@@ -98,7 +121,7 @@ function CartList({ cartList }) {
           <span>Đơn giá</span>
           <span>Số lượng</span>
           <span>Thành tiền</span>
-          <span className={classes.removeAll}>
+          <span>
             <IconButton>
               <DeleteOutlineIcon />
             </IconButton>
@@ -126,6 +149,13 @@ function CartList({ cartList }) {
               <span style={{ marginLeft: "12px" }}>
                 Chọn tất cả {cartList.length} sản phẩm
               </span>
+
+              <span className={classes.removeAll}>
+                <IconButton onClick={() => setOpen(true)}>
+                  <AiFillDelete />
+                </IconButton>
+                Xóa
+              </span>
             </div>
 
             <div className={classes.cartPay}>
@@ -152,6 +182,34 @@ function CartList({ cartList }) {
             </div>
           </div>
         </div>
+
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle
+            id="alert-dialog-title"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <WarningAmberIcon style={{ color: "#fc8918" }} />
+            <span>Xoá sản phẩm</span>
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Bạn có muốn xóa {countCartChecked} sản phẩm đang chọn?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleRemoveAll} variant="outlined">
+              Xác nhận
+            </Button>
+            <Button onClick={() => setOpen(false)} variant="contained">
+              Hủy
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   } else {

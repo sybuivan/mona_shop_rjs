@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import categoryApi from "../../../../api/categoryApi";
+import { useNavigate } from "react-router";
 
-const FilterbyCategory = ({ onChange , idCategory}) => {
+const FilterbyCategory = ({ onChange, idCategory }) => {
   const [categories, setCategories] = useState([]);
-  const [activeId, setActiveId] = useState(idCategory);
+  const navigate = useNavigate();
 
-  console.log('active', typeof activeId);
   useEffect(() => {
     try {
       (async () => {
@@ -19,6 +19,7 @@ const FilterbyCategory = ({ onChange , idCategory}) => {
           dataCategory.map((category) => ({
             id: category.idCategory,
             name: category.name,
+            path: category.path,
           }))
         );
       })();
@@ -27,11 +28,13 @@ const FilterbyCategory = ({ onChange , idCategory}) => {
     }
   }, []);
 
-  const handleClick = (idCategory) => {
+  const handleClick = (idCategory, path) => {
     if (!onChange) return;
 
-    setActiveId(idCategory);
-    onChange(idCategory);
+    // setActiveId(idCategory);
+    console.log("active", idCategory);
+
+    onChange({ idCategory, path });
   };
 
   return (
@@ -46,8 +49,8 @@ const FilterbyCategory = ({ onChange , idCategory}) => {
           {categories.map((category) => (
             <li
               key={category.id}
-              onClick={() => handleClick(category.id)}
-              className={category.id === Number(activeId) ? "active" : ""}
+              onClick={() => handleClick(category.id, category.path)}
+              className={category.id === Number(idCategory) ? "active" : ""}
             >
               <span>{category.name}</span>
             </li>

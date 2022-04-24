@@ -4,8 +4,9 @@
   height: 70px;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  width: calc(100% - 24px);
-  margin: 0 auto 20px; 
+  width: calc(100% - 40px);
+  margin: 0 auto 20px;
+  padding: 0 20px;
   &__wrapper {
     @include flex-item-center(center, flex-start);
   }
@@ -21,6 +22,8 @@
       padding: 12px 20px;
       border-radius: 3px;
       background-color: #fff;
+      cursor: pointer;
+      user-select: none;
       &--active {
         background-color: var(--color-orange-bold);
         color: #fff;
@@ -34,6 +37,10 @@
     padding: 12px 20px;
     border-radius: 3px;
 
+    &-wrapper {
+      @include flex-item-center(center, space-between);
+      padding-right: 20px;
+    }
     &-head {
       @include flex-item-center(center, space-between);
     }

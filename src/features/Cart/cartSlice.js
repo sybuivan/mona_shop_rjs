@@ -71,6 +71,8 @@ const cartSlice = createSlice({
 
         if (countCheck === state.cartItems.length) {
           state.statusCartAll = true;
+        } else {
+          state.statusCartAll = false;
         }
       }
     },
@@ -109,6 +111,13 @@ const cartSlice = createSlice({
         // localStorage.setItem("statusCartAll", status);
       }
     },
+
+    removeCartAll(state, action) {
+      state.cartItems = state.cartItems.filter((cart) => cart.status === false);
+
+      localStorage.removeItem("listProductCart");
+      localStorage.setItem("listProductCart", JSON.stringify(state.cartItems));
+    },
   },
 });
 
@@ -121,5 +130,6 @@ export const {
   setQuantity,
   checkBoxCart,
   checkStatusCartAll,
+  removeCartAll,
 } = actions;
 export default reducer;

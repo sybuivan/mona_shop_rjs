@@ -58,7 +58,7 @@ function Header({ showHeader }) {
   if (showCart) {
     setTimeout(() => {
       dispatch(hiddenMiniCart());
-    }, 2000);
+    }, 3000);
   }
 
   // call API data category home page

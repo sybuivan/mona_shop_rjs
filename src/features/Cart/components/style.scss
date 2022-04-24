@@ -6,13 +6,12 @@
 
 .wrapper {
   padding: 40px 30px;
-  animation: myEffect 3s ease;
   position: absolute;
   top: 0;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: 1px solid #85d6df;
-  right: 100px;
+  right: 32px;
   border-radius: 4px;
   font-size: 1.2em;
 
@@ -28,21 +27,4 @@
   & > button {
     margin-right: 8px;
   }
-}
-
-@keyframes myEffect {
-   0% {
-      right: 80px;
-      opacity: 0.5;
-   }
-
-   50% {
-      right: 40px;
-      opacity: 0.8;
-   }
-
-   100% {
-      opacity: 1;
-      right: 32px;
-   }
 }
