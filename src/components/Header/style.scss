@@ -276,5 +276,19 @@
   }
   .header-nav__bar-tablet {
     display: block;
+    order: 1;
+  }
+
+  .header-logo--order {
+    order: 2;
+
+    & .header-logo {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  .header-search--order {
+    order: 3;
   }
 }

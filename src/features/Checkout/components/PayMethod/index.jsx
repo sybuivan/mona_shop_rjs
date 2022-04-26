@@ -5,9 +5,36 @@ import "./style.scss";
 import formatPrice from "../../../../utils/common";
 import { useSelector } from "react-redux";
 import { totalPriceCartChecked } from "../../../Cart/selector";
+import checkoutApi from "../../../../api/checkoutApi";
+import { useNavigate } from "react-router";
 
 function PayMethod(props) {
-  const totalPrice = useSelector(totalPriceCartChecked)
+  const totalPrice = useSelector(totalPriceCartChecked);
+  const user = useSelector((state) => state.user.current);
+  const cartList = useSelector((state) =>
+    state.cart.cartItems.filter((cart) => cart.status === true)
+  );
+  const navigate = useNavigate();
+  const address = "Lac Son - Gio Son - Gio Linh - Quang Tri";
+  const userId = user.idUser;
+
+  const handleSubmit = async () => {
+    try {
+      const params = {
+        totalPrice,
+        address,
+        userId,
+      };
+
+      const data = await checkoutApi.payMethod(params);
+
+      console.log("data ", data);
+      navigate("/complate");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="pay-method">
       <div className="pay-method__head">
@@ -41,7 +68,7 @@ function PayMethod(props) {
           </div>
         </div>
       </div>
-      <div className="pay-method__footer">
+      <div className="pay-method__footer" onClick={handleSubmit}>
         <Button
           text="Đặt hàng"
           option={{

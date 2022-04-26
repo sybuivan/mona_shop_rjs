@@ -93,3 +93,13 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) { 
+  .product-image__icon {
+    opacity: 1;
+    transform: translateY(0)
+  }
+  .product-sidebar {
+    display: none;
+  }
+}

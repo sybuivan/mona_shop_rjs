@@ -34,7 +34,7 @@ root.render(
             <Route path="category/*" element={<ProductFeature />} />
 
             <Route path="cart" element={<CartFeature />} />
-            <Route path="checkout" element={<CheckoutFeature />} />
+            <Route path="checkout/*" element={<CheckoutFeature />} />
           </Route>
         </Routes>
       </Provider>

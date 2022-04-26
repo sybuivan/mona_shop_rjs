@@ -104,7 +104,7 @@ function Header({ showHeader }) {
       <div className="header-wrapper">
         <Container className="container-fixed header-wrapper__style">
           <Row>
-            <Col lg={2} md={5}>
+            <Col lg={2} md={5} className="header-logo--order">
               <div className="header-logo">
                 <Link to="/">
                   <img src={Images.LOGO} alt="" className="header-logo__img" />
@@ -157,7 +157,7 @@ function Header({ showHeader }) {
               </div>
             </Col>
 
-            <Col lg={2} md={5}>
+            <Col lg={2} md={5} className="header-search--order">
               <div className="header-search">
                 <ul className="header-search__list">
                   <li className="header-search__item">
