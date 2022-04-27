@@ -1,0 +1,16 @@
+@import "../../assets/css/mixin.scss";
+
+@media screen and (max-width: 768px) {
+  .breadcrumb {
+    justify-content: center;
+  }
+  .filter-bar__category {
+    display: none;
+  }
+  .list-page-head__wrapper {
+    @include flex-item-center(center, center);
+  }
+  .filter-sort__label {
+    display: none;
+  }
+}

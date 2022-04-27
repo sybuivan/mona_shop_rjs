@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import { Route, Routes } from "react-router";
 import DetailProduct from "./page/DetailsProduct";
 import ListPageProduct from "./page/ListPage";
+import "./responsive.scss";
 
 function ProductFeature(props) {
   return (

@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Loading from "../../../components/Loading";
 
 const CheckoutComplate = () => {
+  const [loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div
       className="checkout-complate"

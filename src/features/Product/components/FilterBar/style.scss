@@ -1,3 +1,5 @@
+@import "../../../../assets/css/mixin.scss";
+
 .filter-bar {
   &__head {
     padding-bottom: 20px;
@@ -34,5 +36,69 @@
         }
       }
     }
+  }
+
+  &__tablet {
+    display: none;
+    &--active {
+      @include fixed(0, 0, 0, 0);
+      background-color: var(--color-white);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      z-index: 4;
+      width: 250px;
+      animation: filterBar 0.4s ease;
+      display: block;
+      & h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1.2em;
+      }
+    }
+
+    & .filter-bar__category-list {
+      padding-left: 30px;
+    }
+  }
+
+  &__modal {
+    @include fixed(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 3;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+
+    &-icon {
+      position: relative;
+
+      & > button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 4;
+        color: #fff;
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+@keyframes filterBar {
+  0% {
+    opacity: 0.4;
+    transform: translateX(-200px);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

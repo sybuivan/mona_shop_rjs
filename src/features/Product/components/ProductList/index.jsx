@@ -9,7 +9,7 @@ function ProductList({ products }) {
       <Container>
         <Row>
           {products.map((product) => (
-            <Col lg={3} key={product.idProduct}>
+            <Col lg={3} key={product.idProduct} md={4}>
               <Product product={product} />
             </Col>
           ))}

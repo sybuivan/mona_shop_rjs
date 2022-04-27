@@ -8,15 +8,15 @@ import BreadcrumbCom from "../../../../components/Common/Breadcrumb";
 import FilterBar from "../../components/FilterBar";
 import categoryApi from "../../../../api/categoryApi";
 import FilterSortOption from "../../components/Filter/filterSortOption";
-import queryString from 'query-string';
-import SkeletonProductlist from '../../components/ProductList/skeletonProductList'
+import queryString from "query-string";
+import SkeletonProductlist from "../../components/ProductList/skeletonProductList";
 
 function ListPageProduct(props) {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const { idCategory, productId } = useParams();
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [filters, setFilters] = useState({
@@ -33,13 +33,13 @@ function ListPageProduct(props) {
   useEffect(() => {
     try {
       (async () => {
-        setLoading(true)
+        setLoading(true);
         const response = await productApi.getAllProductsByParams(filters);
 
         const dataProducts = response.data.products;
 
         setProducts(dataProducts);
-        setLoading(false)
+        setLoading(false);
       })();
     } catch (error) {
       console.error(error);
@@ -49,13 +49,13 @@ function ListPageProduct(props) {
   useEffect(() => {
     try {
       (async () => {
-        setLoading(false)
+        setLoading(false);
         const response = await productApi.getAllProductsByCateogry(idCategory);
 
         const dataProducts = response.data.products;
 
         setProducts(dataProducts);
-       
+
         setFilters({ idCategory });
       })();
     } catch (error) {
@@ -64,14 +64,11 @@ function ListPageProduct(props) {
   }, [idCategory]);
 
   const setFiltersViewer = (newFilters) => {
-
-    console.log('newFilters', newFilters);
-    navigate(
-      {
-        pathname: location.pathName,
-        search: queryString.stringify(newFilters)
-      }
-    )
+    console.log("newFilters", newFilters);
+    navigate({
+      pathname: location.pathName,
+      search: queryString.stringify(newFilters),
+    });
     setFilters(newFilters);
   };
 
@@ -87,16 +84,21 @@ function ListPageProduct(props) {
         <Container className="container-fixed">
           <Row>
             <Col lg={2}>
-              <BreadcrumbCom title={title} />
+              <div className="list-page-head__wrapper">
+                <div>
+                  <BreadcrumbCom title={title} />
 
-              <FilterBar filters={filters} onChange={setFiltersViewer} />
+                  <FilterBar filters={filters} onChange={setFiltersViewer} />
+                </div>
+              </div>
             </Col>
             <Col lg={10}>
               <FilterSortOption filters={filters} onChange={setFiltersViewer} />
-              {
-             
-                loading ? <SkeletonProductlist /> : <ProductList products={products} />
-              }
+              {loading ? (
+                <SkeletonProductlist />
+              ) : (
+                <ProductList products={products} />
+              )}
             </Col>
           </Row>
         </Container>

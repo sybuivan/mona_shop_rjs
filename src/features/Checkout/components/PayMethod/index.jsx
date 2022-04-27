@@ -26,10 +26,14 @@ function PayMethod(props) {
         userId,
       };
 
-      const data = await checkoutApi.payMethod(params);
+      await checkoutApi.payMethod(params);
+      const res = await checkoutApi.getIdOrder();
+      if (res) {
+        const idOrder = res.data.result[0].idOrder;
+        await checkoutApi.orderDetails({ cartList, idOrder });
+        navigate("/checkout/complate");
+      }
 
-      console.log("data ", data);
-      navigate("/complate");
     } catch (error) {
       console.log(error);
     }

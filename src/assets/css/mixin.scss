@@ -18,3 +18,10 @@
   text-overflow: ellipsis;
 }
 
+@mixin fixed($top, $bottom, $left, $right) {
+  position: fixed;
+  left: $left;
+  top: $top;
+  bottom: $bottom;
+  right: $right;
+}

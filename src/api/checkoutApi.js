@@ -10,6 +10,11 @@ const checkoutApi = {
     const url = "/orders/details";
     return axiosClient.post(url, { params: params });
   },
+
+  getIdOrder() {
+    const url = "/orders/getIdOrder";
+    return axiosClient.get(url);
+  }
 };
 
 export default checkoutApi;
