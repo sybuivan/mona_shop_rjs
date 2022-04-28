@@ -25,3 +25,62 @@
   bottom: $bottom;
   right: $right;
 }
+
+@mixin animationInBar($increment) {
+  animation: filterBarIn 0.4s ease;
+  @keyframes filterBarIn {
+    0% {
+      opacity: 0.4;
+      transform: translateX($increment);
+    }
+    20% {
+      transform: translateX(calc($increment + 40px));
+    }
+    40% {
+      transform: translateX(calc($increment + 80px));
+    }
+
+    60% {
+      transform: translateX(calc($increment + 120px));
+    }
+
+    80% {
+      transform: translateX(calc($increment + 160px));
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+@mixin animationOutBar() {
+
+  animation: filterBarOut 0.4s ease-out;
+  @keyframes filterBarOut {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(calc(-40px));
+    }
+    40% {
+      transform: translateX(calc(-80px));
+    }
+
+    60% {
+      transform: translateX(calc(-120px));
+    }
+
+    80% {
+      transform: translateX(calc(-160px));
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+  }
+}

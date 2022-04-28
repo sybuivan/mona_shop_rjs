@@ -82,11 +82,14 @@ const FilterbyCategory = ({ onChange, idCategory }) => {
         </ul>
       </div>
 
-      <div className={
+      <div
+        className={
           active
             ? "filter-bar__modal filter-bar__modal--active"
             : "filter-bar__modal"
-        } onClick={() => setActive(false)}>
+        }
+        onClick={() => setActive(false)}
+      >
         <div className="filter-bar__modal-icon">
           <IconButton>
             <AiOutlineClose />

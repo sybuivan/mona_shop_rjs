@@ -31,8 +31,9 @@ import {
 import formatPrice from "../../utils/common";
 import "./style.scss";
 import { useParams } from "react-router-dom";
+import FormSearch from "../../features/Search/components/formSearch";
 
-function Header({ showHeader }) {
+function Header({ showHeader, activeBar, onChange }) {
   const loggedInUser = useSelector((state) => state.user.current);
   const showCart = useSelector((state) => state.cart.showMiniCart);
   const listCart = useSelector((state) => state.cart.cartItems);
@@ -90,6 +91,11 @@ function Header({ showHeader }) {
     // navigate("/login");
   };
 
+  const hanldeSetActiveBar = () => {
+    if (!onChange) return;
+    onChange(true);
+  };
+
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
@@ -114,7 +120,7 @@ function Header({ showHeader }) {
 
             <Col md={2} className="header-nav__bar-tablet">
               <div className="header-nav__bar-icon">
-                <IconButton>
+                <IconButton onClick={hanldeSetActiveBar}>
                   <AiOutlineBars />
                 </IconButton>
               </div>
@@ -326,6 +332,60 @@ function Header({ showHeader }) {
         </MenuItem>
       </Menu>
       {showCart ? <NotistackCart /> : ""}
+
+      <div
+        className={
+          activeBar
+            ? "header-nav-left header-nav-left--active"
+            : "header-nav-left"
+        }
+      >
+        <div className="header-nav-left__tablet">
+          <div className="header-nav-left__search">
+            <FormSearch />
+          </div>
+
+          <div className="header-nav-left__list-category">
+            <ul className="header-nav-left__list">
+              <li className="header-nav-left__item">
+                <Link to="/" className="header-nav-left__link">
+                  Giới thiệu
+                </Link>
+              </li>
+
+              {categories.map((category) => (
+                <li
+                  className="header-nav-left__item"
+                  key={category.idCategory}
+                  onClick={() => handleClickNav(category.id)}
+                >
+                  <Link
+                    to={`category/${category.idCategory}`}
+                    className={
+                      category.idCategory === active
+                        ? "header-nav-left__link header-nav-left__link--active"
+                        : "header-nav-left__link"
+                    }
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+
+              <li className="header-nav-left__item">
+                <Link to="/" className="header-nav-left__link">
+                  Tin tức
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        onClick={() => onChange(false)}
+        className={activeBar ? "app-modal app-modal--active" : "app-modal"}
+      ></div>
     </header>
   );
 }

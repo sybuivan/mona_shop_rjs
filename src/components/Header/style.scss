@@ -292,3 +292,48 @@
     order: 3;
   }
 }
+
+.header-nav-left {
+  display: none;
+  @include fixed(0, 0, 0, 0);
+  background-color: var(--color-white);
+  width: 320px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  z-index: 6;
+  transform: translateX(-320px);
+  @include animationOutBar();
+
+  &--active {
+    @include animationInBar(-320px);
+    display: block;
+    transform: translateX(0px);
+  }
+  &__search {
+    margin: 20px calc((100% - 300px) / 2);
+  }
+
+  &__list {
+    padding-left: 14px;
+  }
+
+  &__item {
+    padding-bottom: 18px;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.4em;
+    color: var(--color-text-gray66);
+  }
+}
+
+.app-modal {
+  display: none;
+  &--active {
+    @include fixed(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    display: block;
+  }
+}

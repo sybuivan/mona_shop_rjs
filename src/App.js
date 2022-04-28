@@ -7,11 +7,11 @@ import Header from "./components/Header";
 
 function App() {
   const [showHeader, setShowHeader] = useState(false);
+  const [activeBar, setActiveBar] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 200) {
         setShowHeader(true);
-        
       } else {
         setShowHeader(false);
       }
@@ -23,9 +23,13 @@ function App() {
   }, []);
   // console.log('header scroll', showHeader);
 
+  const handleOnChange = (state) => {
+    setActiveBar(state)
+  }
+
   return (
-    <div className="App">
-      <Header showHeader={showHeader} />
+    <div className={activeBar ? "App header-nav-left--active" : "App"}>
+      <Header showHeader={showHeader} activeBar={activeBar} onChange={handleOnChange}/>
 
       <Outlet />
 
